@@ -9,8 +9,9 @@
 //
 // We'll also pass strings with special symbols, such as "2A3*3a2", "2A3 3a2", and "2_A3*3#A2".
 
+// RECURSIVE SOLUTION
 function palindrome(string) {
-	var str = string
+	const str = string
 		.replace(/\s+/g, '')
 		.replace(/[^A-Z0-9]+/gi, '')
 		.toLowerCase();
@@ -25,6 +26,29 @@ function palindrome(string) {
 
 	return palindrome(str.substring(1, str.length - 1));
 }
+
+// ITERATIVE SOLUTION
+
+function palindrome_it(string) {
+	const str = string
+		.replace(/\s+/g, '')
+		.replace(/[^A-Z0-9]+/gi, '')
+		.toLowerCase();
+
+	if (str.length <= 1) {
+		return true;
+	}
+
+	for (let i = 0; i < str.length / 2; i++) {
+    	if (str.charAt(i) !== str.charAt(str.length - 1 - i)) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+
 
 palindrome('eye'); // true.
 palindrome('_eye'); // true.
